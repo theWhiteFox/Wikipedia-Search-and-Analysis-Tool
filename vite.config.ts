@@ -1,6 +1,6 @@
-import { vitePlugin as remix } from "@remix-run/dev"
-import { defineConfig } from "vite"
-import tsconfigPaths from "vite-tsconfig-paths"
+import { vitePlugin as remix } from "@remix-run/dev";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 import esbuild from "esbuild"
 
 export default defineConfig({
@@ -24,11 +24,11 @@ export default defineConfig({
           bundle: true,
           logLevel: 'info',
         }).catch((error: unknown) => {
-          console.error('Error building server:', error)
-          process.exit(1)
-        })
+          console.error('Error building server:', error);
+          process.exit(1);
+        });
       }
     }),
     tsconfigPaths(),
   ],
-})
+});
