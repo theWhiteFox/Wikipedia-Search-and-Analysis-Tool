@@ -18,15 +18,26 @@ time = .3h
 - Q. Keep track of search history.
 - A . get familiar with [wikipedia api](https://www.mediawiki.org/wiki/API:Main_page) how the data generated using the
 wiki [ApiSandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox#action=jsondata&format=json&title=&formatversion=2)
-time = 2h
-2.3
+time = 3h
+3.5
 3. UI/UX Design:
 - Q. Create a user interface to display the results using visual
 feedback during data fetching. Apply input debouncing to
 reduce search latency.
 - A . Remix
-1.2
-3.5 hours so far 11 - 2 
+2.5
+6 hours
+
+4. Testing and Optimization:
+- Write critical tests for primary logic around state, components,
+etc.
+- A . Jest
+
+5. Documentation and Security:
+- Compile a README.md outlining setup procedures and
+architectural choices.
+
+
 
 ## Development
 
