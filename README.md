@@ -11,6 +11,23 @@ mind.
 - [Remix Express ts set up](https://dev.to/mihaiandrei97/remix-express-ts-1614)
 - [Remix tutorial](https://remix.run/docs/en/main/start/tutorial)
 
+time = .3h
+2. Search Results and Relevance:
+- Q. Display search results.
+- Q. Employ virtualized lists for improved performance.
+- Q. Keep track of search history.
+- A . get familiar with [wikipedia api](https://www.mediawiki.org/wiki/API:Main_page) how the data generated using the
+wiki [ApiSandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox#action=jsondata&format=json&title=&formatversion=2)
+time = 2h
+2.3
+3. UI/UX Design:
+- Q. Create a user interface to display the results using visual
+feedback during data fetching. Apply input debouncing to
+reduce search latency.
+- A . Remix
+1.2
+3.5 hours so far 11 - 2 
+
 ## Development
 
 Run the dev server:
@@ -47,3 +64,11 @@ Make sure to deploy the output of `npm run build`
 ## Styling
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+
+[Remix data loading](https://remix.run/docs/en/main/guides/data-loading)
+
+[Vercel Remix](https://vercel.com/docs/frameworks/remix)
+
+[match sorter](https://www.npmjs.com/package/match-sorter)
+
+[Remix utils](https://remix.run/resources/remix-utils)

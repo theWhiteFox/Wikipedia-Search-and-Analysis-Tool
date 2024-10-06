@@ -1,28 +1,49 @@
+import { useEffect, useState } from "react"
+import { json } from "@remix-run/node"
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node"
+import { useDebounceSubmit } from "remix-utils/use-debounce-submit"
 import {
+  Form,
+  NavLink,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+  useLoaderData,
+  useNavigation,
+} from "@remix-run/react"
+import appStylesHref from "./app.css?url"
+import { getData, WikiPage } from "./data"
 
-import "./tailwind.css";
+export const loader = async (
+  { request }: LoaderFunctionArgs
+) => {
+  const url = new URL(request.url)
+  const q = url.searchParams.get("q")
+  const pages = await getData(q)
+  return json({ pages, q })
+}
 
 export const links: LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+  { rel: "stylesheet", href: appStylesHref },
+]
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export default function App() {
+  const { pages, q } = useLoaderData<typeof loader>()
+  const navigation = useNavigation()
+  const submit = useDebounceSubmit()
+  const searching = navigation.location &&
+    new URLSearchParams(navigation.location.search).has("q")
+  const [query, setQuery] = useState(q || "")
+  const [history, setHistory] = useState<string[]>([]);
+
+  useEffect(() => {
+    setQuery(q || "")
+    const start = performance.now()
+    if (!history.includes(q || "")) setHistory(history => [...history, q || ""])
+  }, [q])
+
   return (
     <html lang="en">
       <head>
@@ -32,14 +53,79 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div id="sidebar">
+          <h1>Wiki pages</h1>
+          <div>
+            <Form
+              id="search-form"
+              onChange={(e) => {
+                submit(e.currentTarget, {
+                  debounceTimeout: 1000,
+                })
+              }}
+              role="search">
+              <input
+                id="q"
+                aria-label="Search pages"
+                className={searching ? "loading" : ""}
+                value={query}
+                placeholder="Search"
+                type="search"
+                name="q"
+                onChange={(e) => setQuery(e.currentTarget.value)}
+              />
+              <div id="search-spinner" aria-hidden hidden={!searching} />
+            </Form>
+            <Form>
+              <button onClick={() => setQuery('')} type="reset">Clear</button>
+            </Form>
+          </div>
+          <nav>
+          {pages ? (
+              <ul>
+                {pages.map((page: WikiPage) => (
+                  <li key={page.id}>
+                    <NavLink to={`pages/${page.pageid}`}>
+                      {page.title ? (
+                        <>
+                          {page.title}
+                        </>
+                      ) : (
+                        <i>No Name</i>
+                      )}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>
+                <i>No pages</i>
+              </p>
+            )}
+            {history.length > 0 && (
+              <>
+                <h3>Search History</h3><ul>
+                  {history.map((query, index) => (
+                    <li key={index}>
+                      <strong>{query}</strong>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </nav>
+        </div>
+        <div className={
+          navigation.state === "loading" && !searching
+            ? "loading"
+            : ""
+        }
+          id="detail">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
-  );
-}
-
-export default function App() {
-  return <Outlet />;
+  )
 }
