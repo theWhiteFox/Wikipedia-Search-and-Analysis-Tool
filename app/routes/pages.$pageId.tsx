@@ -1,8 +1,6 @@
-import { Form, useFetcher, useLoaderData } from "@remix-run/react"
-import type { FunctionComponent } from "react"
-import type { WikiPage } from "../data"
+import { useLoaderData } from "@remix-run/react"
 import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node"
-import { getPage } from "../data"
+import { getWikiPage } from "../data"
 import invariant from "tiny-invariant"
 import parse from 'html-react-parser'
 
@@ -14,9 +12,9 @@ export const action = async ({
   const formData = await request.formData()
 }
 
-export const loader = async ({ params, request }: LoaderFunctionArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.pageId, "Missing pageId param")
-  const page = await getPage(params.pageId)
+  const page = await getWikiPage(params.pageId)
   if (!page) {
     throw new Response("Not Found", { status: 404 })
   }
@@ -36,8 +34,7 @@ export default function page() {
             </>
           ) : (
             <i>No Name</i>
-          )}{" "}
-          <Favorite page={page} />
+          )}
         </h1>
 
         {page.snippet ? (
@@ -48,30 +45,5 @@ export default function page() {
 
       </div>
     </div>
-  )
-}
-
-const Favorite: FunctionComponent<{
-  page: Pick<WikiPage, "favorite">
-}> = ({ page }) => {
-  const fetcher = useFetcher()
-  const favorite = fetcher.formData
-    ? fetcher.formData.get("favorite") === "true"
-    : page.favorite
-
-  return (
-    <fetcher.Form method="post">
-      <button
-        aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
-        }
-        name="favorite"
-        value={favorite ? "false" : "true"}
-      >
-        {favorite ? "★" : "☆"}
-      </button>
-    </fetcher.Form>
   )
 }

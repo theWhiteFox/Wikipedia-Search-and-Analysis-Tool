@@ -76,10 +76,8 @@ Make sure to deploy the output of `npm run build`
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
 
-[Remix data loading](https://remix.run/docs/en/main/guides/data-loading)
-
-[Vercel Remix](https://vercel.com/docs/frameworks/remix)
-
-[match sorter](https://www.npmjs.com/package/match-sorter)
-
-[Remix utils](https://remix.run/resources/remix-utils)
+- [Remix data loading](https://remix.run/docs/en/main/guides/data-loading)
+- [Vercel Remix](https://vercel.com/docs/frameworks/remix)
+- [match sorter](https://www.npmjs.com/package/match-sorter)
+- [Remix utils](https://remix.run/resources/remix-utils)
+- [testing](https://app.studyraid.com/en/read/5717/124616/testing-your-remix-application)

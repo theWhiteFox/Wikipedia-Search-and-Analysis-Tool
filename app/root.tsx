@@ -13,6 +13,7 @@ import {
   useLoaderData,
   useNavigation,
 } from "@remix-run/react"
+/* istanbul ignore next */
 import appStylesHref from "./app.css?url"
 import { getData, WikiPage } from "./data"
 
@@ -21,6 +22,10 @@ export const loader = async (
 ) => {
   const url = new URL(request.url)
   const q = url.searchParams.get("q")
+  if (!q) {
+    console.error('Query is null or undefined');
+    return json({ pages: [], q: null });
+  }
   const pages = await getData(q)
   return json({ pages, q })
 }
@@ -81,7 +86,7 @@ export default function App() {
             </Form>
           </div>
           <nav>
-          {pages ? (
+            {pages ? (
               <ul>
                 {pages.map((page: WikiPage) => (
                   <li key={page.id}>
@@ -104,7 +109,8 @@ export default function App() {
             )}
             {history.length > 0 && (
               <>
-                <h3>Search History</h3><ul>
+                <h3>Search History</h3>
+                <ul>
                   {history.map((query, index) => (
                     <li key={index}>
                       <strong>{query}</strong>
