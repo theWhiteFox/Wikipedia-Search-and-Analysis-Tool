@@ -38,6 +38,9 @@ etc.
 - Compile a README.md outlining setup procedures and
 architectural choices.
 
+2h
+total 8 hours
+
 
 
 ## Development
@@ -79,6 +82,5 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 
 - [Remix data loading](https://remix.run/docs/en/main/guides/data-loading)
 - [Vercel Remix](https://vercel.com/docs/frameworks/remix)
-- [match sorter](https://www.npmjs.com/package/match-sorter)
 - [Remix utils](https://remix.run/resources/remix-utils)
 - [testing](https://app.studyraid.com/en/read/5717/124616/testing-your-remix-application)
