@@ -12,6 +12,7 @@ mind.
 - [Remix tutorial](https://remix.run/docs/en/main/start/tutorial)
 
 time = .3h
+
 2. Search Results and Relevance:
 - Q. Display search results.
 - Q. Employ virtualized lists for improved performance.
