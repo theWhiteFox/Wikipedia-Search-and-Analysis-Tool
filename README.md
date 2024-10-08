@@ -6,10 +6,9 @@
 - Q. Develop a simple Node.js server to manage Wikipedia API
 interactions from multiple users while keeping performance in
 mind.
-- A . Configure a simple [Express](https://expressjs.com/) TypeScript server with and I will use a [Remix](https://remix.run/) template with [Vite](https://vite.dev/guide/why) for fast local development.
+- A . Configure a simple [Express](https://expressjs.com/) TypeScript server with a [Remix](https://remix.run/) template using [Vite](https://vite.dev/guide/why) for fast local development.
 
 - [Remix Express ts set up](https://dev.to/mihaiandrei97/remix-express-ts-1614)
-- [Remix tutorial](https://remix.run/docs/en/main/start/tutorial)
 
 time = .3h
 
@@ -26,6 +25,8 @@ time = 3h
 feedback during data fetching. Apply input debouncing to
 reduce search latency.
 - A . Remix
+- [Remix tutorial](https://remix.run/docs/en/main/start/tutorial)
+
 2.5
 6 hours
 
