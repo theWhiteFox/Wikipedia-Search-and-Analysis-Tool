@@ -16,10 +16,12 @@ time = .3h
 - Q. Display search results.
 - Q. Employ virtualized lists for improved performance.
 - Q. Keep track of search history.
-- A . get familiar with [wikipedia api](https://www.mediawiki.org/wiki/API:Main_page) how the data generated using the
+- A . get familiar with [wikipedia api](https://www.mediawiki.org/wiki/API:Main_page) how the data is generated using the
 wiki [ApiSandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox#action=jsondata&format=json&title=&formatversion=2)
+
 time = 3h
 3.5
+
 3. UI/UX Design:
 - Q. Create a user interface to display the results using visual
 feedback during data fetching. Apply input debouncing to
