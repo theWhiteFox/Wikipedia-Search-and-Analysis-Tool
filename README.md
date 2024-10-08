@@ -44,8 +44,6 @@ architectural choices.
 2h
 total 8 hours
 
-
-
 ## Development
 
 Run the dev server:
